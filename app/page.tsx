@@ -1,8 +1,5 @@
 import Image from "next/image";
-import { Inter } from "next/font/google";
 import Link from "next/link";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
@@ -26,13 +23,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="flex-1 flex items-center justify-center">
-          <Image
-            // className="h-auto w-auto"
-            src="/images/bg-main.png"
-            alt=""
-            width={1500}
-            height={1500}
-          />
+          <Image src="/images/bg-main.png" alt="" width={1500} height={1500} />
         </div>
       </div>
     </main>
