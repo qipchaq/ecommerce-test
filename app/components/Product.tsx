@@ -22,17 +22,17 @@ const Product = ({ product }: Props) => {
           height={200}
         />
       </div>
-      <div className="mt-4 flex justify-between">
-        <div>
+      <div className="mt-4 flex flex-col justify-between">
+        <div className="flex gap-2 justify-between">
           <h3 className="text-sm text-gray-700">
             <a href="#">
               <span aria-hidden="true" className="absolute inset-0"></span>
               {product.title}
             </a>
           </h3>
-          <p className="mt-1 text-sm text-gray-500">{description}</p>
+          <p className="text-sm font-medium text-gray-900">{product.price}$</p>
         </div>
-        <p className="text-sm font-medium text-gray-900">{product.price}$</p>
+        <p className="mt-1 text-sm text-gray-500">{description}</p>
       </div>
     </div>
   );
