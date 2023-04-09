@@ -46,7 +46,11 @@ const Pagination = ({ totalProducts }: Props) => {
             Showing
             <span className="font-medium">{currentSliceStart + 1}</span>
             to
-            <span className="font-medium">{currentSliceEnd}</span>
+            <span className="font-medium">
+              {currentSliceEnd > totalProducts
+                ? totalProducts
+                : currentSliceEnd}
+            </span>
             of
             <span className="font-medium">{totalProducts}</span>
             results

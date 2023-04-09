@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Product from "./Product";
 import Pagination from "../components/Pagination";
 
-import { sliceStartAtom, sliceEndAtom } from "@/storage/atoms";
+import { sliceStartAtom, sliceEndAtom, searchTermAtom } from "@/storage/atoms";
 import { useAtom } from "jotai";
 
 type Props = {
@@ -15,14 +15,26 @@ const DataList = ({ data }: Props) => {
   const [currentSliceStart] = useAtom(sliceStartAtom);
   const [currentSliceEnd] = useAtom(sliceEndAtom);
 
+  const [products, setProducts] = useState(data);
+  const [currentSearchTerm, setSearchTerm] = useAtom(searchTermAtom);
+
+  useEffect(() => {
+    const filteredData = data.filter((product) =>
+      product.title.toLowerCase().includes(currentSearchTerm.toLowerCase())
+    );
+    setProducts(filteredData);
+  }, [currentSearchTerm, data]);
+
   return (
     <>
       <div className="my-8 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-5 xl:gap-x-8">
-        {data.slice(currentSliceStart, currentSliceEnd).map((data: Product) => (
-          <Product key={data.id} product={data} />
-        ))}
+        {products
+          .slice(currentSliceStart, currentSliceEnd)
+          .map((data: Product) => (
+            <Product key={data.id} product={data} />
+          ))}
       </div>
-      <Pagination totalProducts={data.length} />
+      <Pagination totalProducts={products.length} />
     </>
   );
 };
