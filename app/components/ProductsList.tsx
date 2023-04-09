@@ -16,7 +16,7 @@ const DataList = ({ data }: Props) => {
   const [currentSliceEnd] = useAtom(sliceEndAtom);
 
   const [products, setProducts] = useState(data);
-  const [currentSearchTerm, setSearchTerm] = useAtom(searchTermAtom);
+  const [currentSearchTerm] = useAtom(searchTermAtom);
 
   useEffect(() => {
     const filteredData = data.filter((product) =>

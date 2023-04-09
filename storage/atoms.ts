@@ -6,4 +6,12 @@ const currentPageAtom = atom(1);
 
 const searchTermAtom = atom("");
 
-export { sliceStartAtom, sliceEndAtom, currentPageAtom, searchTermAtom };
+const totalOrdersAtom = atom(0);
+
+export {
+  sliceStartAtom,
+  sliceEndAtom,
+  currentPageAtom,
+  searchTermAtom,
+  totalOrdersAtom,
+};
