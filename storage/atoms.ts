@@ -8,10 +8,13 @@ const searchTermAtom = atom("");
 
 const totalOrdersAtom = atom(0);
 
+const ordersAtom = atom<Product[]>([]);
+
 export {
   sliceStartAtom,
   sliceEndAtom,
   currentPageAtom,
   searchTermAtom,
   totalOrdersAtom,
+  ordersAtom,
 };

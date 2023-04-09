@@ -1,7 +1,7 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
-import { totalOrdersAtom } from "@/storage/atoms";
+import { totalOrdersAtom, ordersAtom } from "@/storage/atoms";
 import { useAtom } from "jotai";
 
 type Props = {
@@ -10,19 +10,22 @@ type Props = {
 
 const Product = ({ product }: Props) => {
   const [currentTotalOrders, setCurrentTotalOrders] = useAtom(totalOrdersAtom);
+  const [currentOrders, setCurrentOrders] = useAtom(ordersAtom);
 
   const description =
     product.description.length > 100
-      ? product.description.substring(1, 100) + "..."
+      ? product.description.substring(0, 100) + "..."
       : product.description;
 
   const handleAddReduceButtons = (action: string) => {
     if (currentTotalOrders === 0 && action !== "add") {
       return;
     }
+
     switch (action) {
       case "add":
         setCurrentTotalOrders((prev) => prev + 1);
+        setCurrentOrders((prev) => [...prev, product]);
         break;
       case "reduce":
         setCurrentTotalOrders((prev) => prev - 1);
@@ -44,7 +47,7 @@ const Product = ({ product }: Props) => {
         />
       </div>
 
-      <div className="flex m-auto w-fit mt-4">
+      <div className="flex m-auto w-fit mt-4 items-center">
         <button onClick={() => handleAddReduceButtons("add")}>
           <Image src="/images/plus.png" alt="" width={35} height={35} />
         </button>
