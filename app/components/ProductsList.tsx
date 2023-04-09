@@ -27,7 +27,7 @@ const DataList = ({ data }: Props) => {
 
   return (
     <>
-      <div className="my-8 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-5 xl:gap-x-8">
+      <div className="my-8 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:gap-x-8">
         {products
           .slice(currentSliceStart, currentSliceEnd)
           .map((data: Product) => (
